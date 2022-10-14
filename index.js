@@ -5,7 +5,7 @@ function validate() {
     let city = document.getElementById('city').value
     let zip = document.getElementById('zip').value
     let check = document.getElementById('check-box').checked
-    console.log(firstName, lastName, email, city, zip, check)
+    let error = false
 
     if (firstName.length >= 2) {
         document.getElementById('first-name-valid').style.display = 'block'
@@ -14,6 +14,7 @@ function validate() {
     } else {
         document.getElementById('first-name-invalid').style.display = 'block'
         document.getElementById('first-name-valid').style.display = 'none'
+        error = true
     }
 
     if (lastName.length >= 2) {
@@ -23,6 +24,7 @@ function validate() {
     } else {
         document.getElementById('last-name-invalid').style.display = 'block'
         document.getElementById('last-name-valid').style.display = 'none'
+        error = true
     }
 
 
@@ -35,6 +37,7 @@ function validate() {
     } else {
         document.getElementById('email-invalid').style.display = 'block'
         document.getElementById('email-valid').style.display = 'none'
+        error = true
     }
 
     if (city.length >= 3) {
@@ -44,6 +47,7 @@ function validate() {
     } else {
         document.getElementById('city-invalid').style.display = 'block'
         document.getElementById('city-valid').style.display = 'none'
+        error = true
     }
 
     let zipNumber = parseInt(zip)
@@ -54,6 +58,7 @@ function validate() {
     } else {
         document.getElementById('zip-invalid').style.display = 'block'
         document.getElementById('zip-valid').style.display = 'none'
+        error = true
     }
 
     if (state != 'None') {
@@ -63,15 +68,29 @@ function validate() {
     } else {
         document.getElementById('state-invalid').style.display = 'block'
         document.getElementById('state-valid').style.display = 'none'
+        error = true
     }
 
 
-    if (check){
+    if (check) {
         document.getElementById('tnc-invalid').style.display = 'none'
-    }else{
+    } else {
         document.getElementById('tnc-invalid').style.display = 'block'
+        error = true
+    }
+
+    if (!error) {
+        alert('Your details have been saved successfully')
+        document.getElementById('form').reset()
+        let validFeedbacks = document.getElementsByClassName('valid-feedback')
+        for(i=0;i<validFeedbacks.length;i++){
+            validFeedbacks[i].style.display = 'none'
+        }
+        let invalidFeedbacks = document.getElementsByClassName('invalid-feedback')
+        for(i=0;i<invalidFeedbacks.length;i++){
+            invalidFeedbacks[i].style.display = 'none'
+        }
     }
 }
 
 
-    
